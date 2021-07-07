@@ -54,20 +54,20 @@
 
                 </nav>
 
-                <form class="col-10 offset-2">
+               <form action="/form-handler" method="POST" class="col-10 offset-2">
                     <div class="col-6 submit-box">
                         <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4">
+                        <input type="email" class="form-control" id="inputEmail4" name="email-input">
                     </div>
 
                     <div class="col-6 submit-box">
-                        <label for="inputCity" class="form-label">Company</label>
-                        <input type="text" class="form-control" id="inputCity">
+                        <label for="inputCompany" class="form-label">Company</label>
+                        <input type="text" class="form-control" id="inputCompany" name="company-input">
                     </div>
 
                     <div class="col-6 submit-box">
-                        <label for="exampleFormControlTextarea1" class="form-label">Review</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label for="inputReview" class="form-label">Review</label>
+                        <textarea class="form-control" id="inputReview" name="review-input" rows="3"></textarea>
                     </div>
 
                     <div class="col-10 submit-box submit-end">
