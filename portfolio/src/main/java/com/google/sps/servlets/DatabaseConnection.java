@@ -19,8 +19,8 @@ public class DatabaseConnection {
         // Database name to access
        
         String dbName = "reviews";
-        String dbUsername = "";
-        String dbPassword = "";
+        String dbUsername = "root";
+        String dbPassword = "unzPmpc5KGvMhoma";
 
 
         // Note: For Java users, the Cloud SQL JDBC Socket Factory can provide authenticated connections
