@@ -28,6 +28,14 @@
       <version>4.0.1</version>
     </dependency>
 
+  <dependency>
+    <!-- Soy -->
+    <groupId>com.google.template</groupId>
+    <artifactId>soy</artifactId>
+    <version>2020-08-24</version> <!-- Or latest version. -->
+  </dependency>
+  
+
     <!-- Jetty -->
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
