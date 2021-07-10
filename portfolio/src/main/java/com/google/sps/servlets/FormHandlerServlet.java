@@ -35,7 +35,7 @@ public class FormHandlerServlet extends HttpServlet {
     String review = request.getParameter("inputReview");
 
     
-    try {
+    /*try {
         //creates instance of connection pool
         DataSource connectionPool = DatabaseConnection.initializeDatabase();
         try (Connection conn = connectionPool.getConnection()) {
@@ -59,7 +59,12 @@ public class FormHandlerServlet extends HttpServlet {
         } catch (ClassNotFoundException | SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
+
+    insertIntoDatabse(company, salary, rating, role, review, wlb);
+
+    selectBasedOnCompany("\"Amazon\"");
+    //response.sendRedirect("https://google.com");
 
 
     // Print the value so you can see it in the server logs.
@@ -79,4 +84,89 @@ public class FormHandlerServlet extends HttpServlet {
     response.getWriter().println("Review: " + review);
 
   }
+  public void insertIntoDatabse(String company, int salary, int rating, String role, String review, int wlb){
+      try {
+       //creates instance of connection pool
+       DataSource connectionPool = DatabaseConnection.initializeDatabase();
+       try (Connection conn = connectionPool.getConnection()) {
+           //prepares satement to write to the table
+           String stmt = String.format("INSERT INTO reviews (comapny, salary, rating, role, review, wlb) VALUES (?,?,?,?,?,?);");
+           try (PreparedStatement insertStmt = conn.prepareStatement(stmt)) {
+               //inserting values from the servlet into the table/database
+               insertStmt.setQueryTimeout(10);
+               insertStmt.setString(1, company);
+               insertStmt.setInt(2, salary);
+               insertStmt.setInt(3, rating);
+               insertStmt.setString(4, role);
+               insertStmt.setString(5, review);
+               insertStmt.setInt(6, wlb);
+               insertStmt.execute();
+               }
+           }catch(SQLException e){
+               System.out.println("failed");
+           }
+ 
+       } catch (ClassNotFoundException | SQLException e) {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+       }
+ 
+ }
+  public void selectBasedOnRole(String role){
+   try {
+       //creates instance of connection pool
+       DataSource connectionPool = DatabaseConnection.initializeDatabase();
+       List<String> bookList = new ArrayList<>();
+       try (Connection conn = connectionPool.getConnection()) {
+           String stmt = String.format("SELECT * FROM reviews WHERE role = " + role + ";");
+           try (PreparedStatement selectStmt = conn.prepareStatement(stmt)) {
+               selectStmt.setQueryTimeout(10); // 10s
+               ResultSet rs = selectStmt.executeQuery();
+               while (rs.next()) {
+                   bookList.add(rs.getString(5));
+               }
+ 
+           }
+           }catch(SQLException e){
+                   System.out.println("failed");
+           }
+           System.out.println(bookList);
+ 
+       } catch (ClassNotFoundException | SQLException e) {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+       }
+      
+ 
+ }
+ 
+ public void selectBasedOnCompany(String company){
+     try {
+       //creates instance of connection pool
+       DataSource connectionPool = DatabaseConnection.initializeDatabase();
+       List<String> bookList = new ArrayList<>();
+       try (Connection conn = connectionPool.getConnection()) {
+           String stmt = String.format("SELECT * FROM reviews WHERE comapny = " + company + ";"); 
+           try (PreparedStatement selectStmt = conn.prepareStatement(stmt)) {
+               selectStmt.setQueryTimeout(10); // 10s
+               ResultSet rs = selectStmt.executeQuery();
+               while (rs.next()) {
+                   bookList.add(rs.getString(5));
+                   bookList.add(rs.getString("review"));
+               }
+           }
+           }catch(SQLException e){
+                   System.out.println("failed");
+           }
+           System.out.println(bookList);
+ 
+       } catch (ClassNotFoundException | SQLException e) {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+       }
+ 
+ }
+ 
+
+
 }
