@@ -1,4 +1,4 @@
-package /*main.java.*/main.java.com.google.sps.servlets;
+package /*main.java.*/com.google.sps.servlets;
 
 import java.io.Console;
 import java.io.IOException;
@@ -27,22 +27,29 @@ public class FormHandlerServlet extends HttpServlet {
 
     // Get the value entered in the form.
 
-    String textValue1 = request.getParameter("email-input");
-    String textValue2 = request.getParameter("company-input");
-    String textValue3 = request.getParameter("review-input");
+    String company = request.getParameter("inputCompany");
+    String role = request.getParameter("role");
+    String workLife = request.getParameter("workLife");
+    String starRating = request.getParameter("starRating");
+    String salary = request.getParameter("salary");
+    String review = request.getParameter("inputReview");
+
     
     try {
         //creates instance of connection pool
         DataSource connectionPool = DatabaseConnection.initializeDatabase();
         try (Connection conn = connectionPool.getConnection()) {
             //prepares satement to write to the table
-            String stmt = String.format("INSERT INTO reviews (email, company, review) values (?,?,?);");
+            String stmt = String.format("INSERT INTO reviews (company, role, workLife, starRating, salary, review) values (?,?,?,?,?,?);");
             try (PreparedStatement insertStmt = conn.prepareStatement(stmt)) {
                 //inserting values from the servlet into the table/database
                 insertStmt.setQueryTimeout(10);
-                insertStmt.setString(1, textValue1);
-                insertStmt.setString(2, textValue2);
-                insertStmt.setString(3, textValue3);
+                insertStmt.setString(1, company);
+                insertStmt.setString(2, role);
+                insertStmt.setString(3, workLife);
+                insertStmt.setString(4, starRating);
+                insertStmt.setString(5, salary);
+                insertStmt.setString(6, review);
                 insertStmt.execute();
                 }
             }catch(SQLException e){
@@ -56,14 +63,20 @@ public class FormHandlerServlet extends HttpServlet {
 
 
     // Print the value so you can see it in the server logs.
-    System.out.println("You submitted: " + textValue1);
-    System.out.println("You submitted: " + textValue2);
-    System.out.println("You submitted: " + textValue3);
+    System.out.println("Company: " + company);
+    System.out.println("Role: " + role);
+    System.out.println("Work-Life Balance: " + workLife);
+    System.out.println("Star Rating: " + starRating);
+    System.out.println("Salary: " + salary);
+    System.out.println("Review: " + review);
 
     // Write the value to the response so the user can see it.
-    response.getWriter().println("You submitted: " + textValue1);
-    response.getWriter().println("You submitted: " + textValue2);
-    response.getWriter().println("You submitted: " + textValue3);
+    response.getWriter().println("Company: " + company);
+    response.getWriter().println("Role: " + role);
+    response.getWriter().println("Work-Life Balance: " + workLife);
+    response.getWriter().println("Star Rating: " + starRating);
+    response.getWriter().println("Salary: " + salary);
+    response.getWriter().println("Review: " + review);
 
   }
 }
