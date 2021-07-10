@@ -69,14 +69,16 @@ public class FormHandlerServlet extends HttpServlet {
     System.out.println("Star Rating: " + starRating);
     System.out.println("Salary: " + salary);
     System.out.println("Review: " + review);
+    
+    response.sendRedirect("index.html");
 
     // Write the value to the response so the user can see it.
-    response.getWriter().println("Company: " + company);
-    response.getWriter().println("Role: " + role);
-    response.getWriter().println("Work-Life Balance: " + workLife);
-    response.getWriter().println("Star Rating: " + starRating);
-    response.getWriter().println("Salary: " + salary);
-    response.getWriter().println("Review: " + review);
+    // response.getWriter().println("<p>Company: " + company +"</p>");
+    // response.getWriter().println("<p>Role: " + role +"</p>");
+    // response.getWriter().println("<p>Work-Life Balance: " + workLife +"</p>");
+    // response.getWriter().println("<p>Star Rating: " + starRating +"</p>");
+    // response.getWriter().println("<p>Salary: " + salary +"</p>");
+    // response.getWriter().println("<p>Review: " + review +"</p>");
 
   }
 }
