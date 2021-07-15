@@ -34,37 +34,10 @@ public class FormHandlerServlet extends HttpServlet {
     String salary = request.getParameter("salary");
     String review = request.getParameter("inputReview");
 
-    
-    /*try {
-        //creates instance of connection pool
-        DataSource connectionPool = DatabaseConnection.initializeDatabase();
-        try (Connection conn = connectionPool.getConnection()) {
-            //prepares satement to write to the table
-            String stmt = String.format("INSERT INTO reviews (company, role, workLife, starRating, salary, review) values (?,?,?,?,?,?);");
-            try (PreparedStatement insertStmt = conn.prepareStatement(stmt)) {
-                //inserting values from the servlet into the table/database
-                insertStmt.setQueryTimeout(10);
-                insertStmt.setString(1, company);
-                insertStmt.setString(2, role);
-                insertStmt.setString(3, workLife);
-                insertStmt.setString(4, starRating);
-                insertStmt.setString(5, salary);
-                insertStmt.setString(6, review);
-                insertStmt.execute();
-                }
-            }catch(SQLException e){
-                System.out.println("failed");
-            }
-
-        } catch (ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }*/
-
-    insertIntoDatabse(company, salary, rating, role, review, wlb);
+    insertIntoDatabse(company, salary, starRating , role, review, workLife);
+    insertIntoDatabse("Amazon", "100000", "5" , "swe", "sdsdcscsc", "5");
 
     selectBasedOnCompany("\"Amazon\"");
-    //response.sendRedirect("https://google.com");
 
 
     // Print the value so you can see it in the server logs.
@@ -85,22 +58,22 @@ public class FormHandlerServlet extends HttpServlet {
     response.sendRedirect("index.html");
 
   }
-  public void insertIntoDatabse(String company, int salary, int rating, String role, String review, int wlb){
+  public void insertIntoDatabse(String company, String salary, String rating, String role, String review, String wlb){
       try {
        //creates instance of connection pool
        DataSource connectionPool = DatabaseConnection.initializeDatabase();
        try (Connection conn = connectionPool.getConnection()) {
            //prepares satement to write to the table
-           String stmt = String.format("INSERT INTO reviews (comapny, salary, rating, role, review, wlb) VALUES (?,?,?,?,?,?);");
+           String stmt = String.format("INSERT INTO reviews (company, salary, rating, role, review, wlb) VALUES (?,?,?,?,?,?);");
            try (PreparedStatement insertStmt = conn.prepareStatement(stmt)) {
-               //inserting values from the servlet into the table/database
+               //inserting values from the servlet into the table/database review rating salary company
                insertStmt.setQueryTimeout(10);
                insertStmt.setString(1, company);
-               insertStmt.setInt(2, salary);
-               insertStmt.setInt(3, rating);
+               insertStmt.setString(2, salary); 
+               insertStmt.setString(3, rating);
                insertStmt.setString(4, role);
-               insertStmt.setString(5, review);
-               insertStmt.setInt(6, wlb);
+               insertStmt.setString(5, review); 
+               insertStmt.setString(6, wlb);
                insertStmt.execute();
                }
            }catch(SQLException e){
@@ -147,12 +120,12 @@ public class FormHandlerServlet extends HttpServlet {
        DataSource connectionPool = DatabaseConnection.initializeDatabase();
        List<String> bookList = new ArrayList<>();
        try (Connection conn = connectionPool.getConnection()) {
-           String stmt = String.format("SELECT * FROM reviews WHERE comapny = " + company + ";"); 
+           String stmt = String.format("SELECT * FROM reviews WHERE company = " + company + ";"); 
            try (PreparedStatement selectStmt = conn.prepareStatement(stmt)) {
                selectStmt.setQueryTimeout(10); // 10s
                ResultSet rs = selectStmt.executeQuery();
                while (rs.next()) {
-                   bookList.add(rs.getString(5));
+                   //bookList.add(rs.getString(5));
                    bookList.add(rs.getString("review"));
                }
            }
