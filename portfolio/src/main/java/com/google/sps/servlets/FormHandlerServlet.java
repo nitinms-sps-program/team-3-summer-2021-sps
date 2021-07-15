@@ -76,12 +76,13 @@ public class FormHandlerServlet extends HttpServlet {
     System.out.println("Review: " + review);
 
     // Write the value to the response so the user can see it.
-    response.getWriter().println("Company: " + company);
-    response.getWriter().println("Role: " + role);
-    response.getWriter().println("Work-Life Balance: " + workLife);
-    response.getWriter().println("Star Rating: " + starRating);
-    response.getWriter().println("Salary: " + salary);
-    response.getWriter().println("Review: " + review);
+    // response.getWriter().println("Company: " + company);
+    // response.getWriter().println("Role: " + role);
+    // response.getWriter().println("Work-Life Balance: " + workLife);
+    // response.getWriter().println("Star Rating: " + starRating);
+    // response.getWriter().println("Salary: " + salary);
+    // response.getWriter().println("Review: " + review);
+    response.sendRedirect("index.html");
 
   }
   public void insertIntoDatabse(String company, int salary, int rating, String role, String review, int wlb){
