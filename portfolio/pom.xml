@@ -126,7 +126,7 @@
 
 
         <!-- Plug-in for SOY-->
-        <plugin>
+       <!-- <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <version>1.6.0</version>
@@ -139,9 +139,9 @@
                 </execution>
             </executions>
             <configuration>
-                <mainClass>com.google.sps.servlets.something</mainClass>
+                <mainClass>com.google.sps.servlets.Something</mainClass>
             </configuration>
-        </plugin>
+        </plugin> -->
 
       <!-- App Engine plugin for deploying to the live site. -->
       <plugin>
