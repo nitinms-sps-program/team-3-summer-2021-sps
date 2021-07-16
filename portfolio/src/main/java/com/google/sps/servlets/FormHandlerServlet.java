@@ -27,12 +27,12 @@ public class FormHandlerServlet extends HttpServlet {
 
     // Get the value entered in the form.
 
-    String company = request.getParameter("inputCompany");
+    String company = request.getParameter("company-input");
     String role = request.getParameter("role");
     String workLife = request.getParameter("workLife");
-    String starRating = request.getParameter("starRating");
+    String starRating = request.getParameter("star");
     String salary = request.getParameter("salary");
-    String review = request.getParameter("inputReview");
+    String review = request.getParameter("review-input");
 
     insertIntoDatabse(company, salary, starRating , role, review, workLife);
     insertIntoDatabse("Amazon", "100000", "5" , "swe", "sdsdcscsc", "5");
