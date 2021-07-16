@@ -39,6 +39,14 @@
         <version>4.0.3</version>
     </dependency>
 
+
+    <dependency>
+        <groupId>com.google.template</groupId>
+        <artifactId>soy</artifactId>
+        <version>2020-08-24</version> <!-- Or latest version. -->
+    </dependency>
+
+
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -115,6 +123,25 @@
           </execution>
         </executions>
       </plugin>
+
+
+        <!-- Plug-in for SOY-->
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.6.0</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>java</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <mainClass>com.google.sps.servlets.something</mainClass>
+            </configuration>
+        </plugin>
 
       <!-- App Engine plugin for deploying to the live site. -->
       <plugin>
