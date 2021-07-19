@@ -43,6 +43,7 @@ public class SearchServlet extends HttpServlet {
     private static final long serialVersionUID = 1L; // ensures that loaded class corresponds to a serialized object
 @Override
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    try{
     String company = request.getParameter("companyName");
     
     List<Review> reviews = selectBasedOnCompany(company);
@@ -82,27 +83,18 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
     //System.out.println(
        // simpleTofu.newRenderer(".index").setData(data).render());
 
-
-
   ((ServletResponse) response).setContentType("text/html");
   response.setCharacterEncoding("utf-8");
   try {
     ((ServletResponse) response).getWriter().print(simpleTofu.newRenderer(".index").setData(data).render());
   } catch (IOException e) {
     //LOGGER.error("General IOException: {}", e.getMessage());
-  }
+  }  
 
+}catch (Exception e){
+    response.sendRedirect("index.html");
 
-
-
-
-
-
-
-
-
-
-    
+}
 
     //Map
 
@@ -139,7 +131,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
                    System.out.println("failed");
            }
            System.out.println(bookList);
-           System.out.println(bookList.get(0).salary);
+           //System.out.println(bookList.get(0).salary);
                    
            
            return bookList;

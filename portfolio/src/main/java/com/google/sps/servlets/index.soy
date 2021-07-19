@@ -1,6 +1,17 @@
+{namespace com.google.sps.index}
+{template .index}
+{@param companyName: string} /** The person's name. */
+{@param workBalance: string}
+{@param salary: string}
+{@param review: string}
+{@param role: string} 
+{@param rating: string} 
+
+{template .reviews}
+{@param reviews: list<string>}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8">
     <title>Internship Reviews</title>
@@ -77,16 +88,8 @@
 
                 <div class="">
                     <div class="col-12">
-                        {namespace webapp.index}
-                            {template .index}
-                                {@param companyName: string} /** The person's name. */
-                                {@param workBalance: string}
-                                {@param salary: string}
-                                {@param review: string}
-                                {@param role: string} 
-                                {@param rating: string} 
 
-                            {for $review in $reviews}
+                            
                             <span class="star-rating float-right">
                                 {if $rating == "1"}
                                     <a href="#"><i class="fas fa-star"></i></a>
@@ -120,7 +123,7 @@
                             <h6>{$salary}</h6>
                             <h6>{$workBalance}/5</h6>        
                             <hr>
-                            {/for}
+                            
 
                     </div>
 
@@ -154,3 +157,4 @@
 </body>
 
 </html>
+{/template}
