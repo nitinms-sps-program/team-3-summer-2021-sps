@@ -3,12 +3,16 @@
 {@param companyName: string} /** The person's name. */
 {@param workBalance: string}
 {@param salary: string}
-{@param review: string}
 {@param role: string} 
-{@param rating: string} 
+{@param reviews: list<[rating:string, comment:string]>} 
 
-{template .reviews}
+/**{template .reviews}
+{@param name: list<string>}
+{@param wlb: list<string>}
+{@param salaries: list<string>}
 {@param reviews: list<string>}
+{@param roles: list<string>}
+{@param starRatings: list<string>}*/
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -89,62 +93,57 @@
                 <div class="">
                     <div class="col-12">
 
+
                             
+                          {for $review in $reviews}
                             <span class="star-rating float-right">
-                                {if $rating == "1"}
+                            
+                                {if $review.rating == "1"}
                                     <a href="#"><i class="fas fa-star"></i></a>
                                 {/if}  
-                                {if $rating == "2"}
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                {/if}  
-                                {if $rating == "3"}
-                                    <a href="#"><i class="fas fa-star"></i></a>
+                                {if $review.rating == "2"}
                                     <a href="#"><i class="fas fa-star"></i></a>
                                     <a href="#"><i class="fas fa-star"></i></a>
                                 {/if}  
-                                {if $rating == "4"}
+                                {if $review.rating == "3"}
+                                    <a href="#"><i class="fas fa-star"></i></a>
+                                    <a href="#"><i class="fas fa-star"></i></a>
+                                    <a href="#"><i class="fas fa-star"></i></a>
+                                {/if}  
+                                {if $review.rating == "4"}
                                     <a href="#"><i class="fas fa-star"></i></a>
                                     <a href="#"><i class="fas fa-star"></i></a>
                                     <a href="#"><i class="fas fa-star"></i></a>
                                     <a href="#"><i class="fas fa-star"></i></a>
                                 {/if} 
-                                {if $rating == "5"}
+                                {if $review.rating == "5"}
                                     <a href="#"><i class="fas fa-star"></i></a>
                                     <a href="#"><i class="fas fa-star"></i></a>
                                     <a href="#"><i class="fas fa-star"></i></a>
                                     <a href="#"><i class="fas fa-star"></i></a>
                                     <a href="#"><i class="fas fa-star"></i></a>
                                 {/if}
+                                
+                                
                             </span>
+                            
+                            
                             <h4>{$companyName}</h4>
+                            
                             <h6>{$role}</h6>
-                            <p>{$review} </p>
+                            <p>{$review.comment} </p>
                             <h6>{$salary}</h6>
                             <h6>{$workBalance}/5</h6>        
                             <hr>
+                            {/for}
+                            
+                            
+                            
                             
 
                     </div>
 
-                    <div class="col-12">
-                        <span class="star-rating float-right">
-                            <a href="#"><i class="fas fa-star"></i></a>
-                            <a href="#"><i class="fas fa-star"></i></a>
-                            <a href="#"><i class="fas fa-star"></i></a>
-                            <a href="#"><i class="fas fa-star"></i></a>
-                            <a href="#"><i class="fas fa-star"></i></a>
-                        </span>
-                        <h4>Amazon</h4>
-                        <h6>Software Engineer Intern</h6>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type
-                            specimen book. It has survived not only five centuries, but also the leap into
-                            electronic typesetting, remaining essentially unchanged.
-                        </p>
-                    </div>
+                    
 
 
                 </div>

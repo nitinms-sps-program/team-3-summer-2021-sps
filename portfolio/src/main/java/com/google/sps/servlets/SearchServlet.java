@@ -48,6 +48,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
     
     List<Review> reviews = selectBasedOnCompany(company);
 
+    
+
     Review newReview = reviews.get(0);
     System.out.println(newReview.review);
 
@@ -70,15 +72,40 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
 
     // helloName
+
+    List<Map<String,Object>> reviewsList = new ArrayList<Map<String, Object>>();
+
+    for (Review review : reviews) {
+        Map<String, Object> fields = new HashMap<String, Object>();
+        
+        fields.put("rating", review.rating);
+        fields.put("comment", review.review);
+        
+        reviewsList.add(fields);
+        
+    }
+
+
+    
+
+
+
+
+
     Map<String, Object> data = new HashMap<>();
+    data.put("reviews", reviewsList);
     data.put("companyName", newReview.company);
     data.put("workBalance", newReview.wlb);
     data.put("salary", newReview.salary);
-    data.put("review", newReview.review);
+    //data.put("review", newReview.review);
     data.put("role", newReview.role);
-    data.put("rating", newReview.rating);
+    //data.put("ratings", ratingsList);
     
     System.out.println("-----------------");
+
+    //data.put("reviews", reviews);
+    
+   // data.put("starRatings", reviewsList);
 
     //System.out.println(
        // simpleTofu.newRenderer(".index").setData(data).render());
@@ -87,6 +114,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
   response.setCharacterEncoding("utf-8");
   try {
     ((ServletResponse) response).getWriter().print(simpleTofu.newRenderer(".index").setData(data).render());
+    //((ServletResponse) response).getWriter().print(simpleTofu.newRenderer(".reviews").setData(data).render());
   } catch (IOException e) {
     //LOGGER.error("General IOException: {}", e.getMessage());
   }  
@@ -96,16 +124,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
 }
 
-    //Map
 
-    /*
-    {@param companyName: string} 
-{@param workBalance: string}
-{@param salary: string}
-{@param review: string}
-{@param role: string} 
-{@param rating: string} 
-    */
 
 }
 
