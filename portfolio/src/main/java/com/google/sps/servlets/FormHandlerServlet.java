@@ -35,9 +35,8 @@ public class FormHandlerServlet extends HttpServlet {
     String review = request.getParameter("review-input");
 
     insertIntoDatabse(company, salary, starRating , role, review, workLife);
-    insertIntoDatabse("Amazon", "100000", "5" , "swe", "sdsdcscsc", "5");
 
-    selectBasedOnCompany("\"Amazon\"");
+    //selectBasedOnCompany("\"Amazon\"");
 
 
     // Print the value so you can see it in the server logs.
@@ -111,33 +110,6 @@ public class FormHandlerServlet extends HttpServlet {
            e.printStackTrace();
        }
       
- 
- }
- 
- public void selectBasedOnCompany(String company){
-     try {
-       //creates instance of connection pool
-       DataSource connectionPool = DatabaseConnection.initializeDatabase();
-       List<String> bookList = new ArrayList<>();
-       try (Connection conn = connectionPool.getConnection()) {
-           String stmt = String.format("SELECT * FROM reviews WHERE company = " + company + ";"); 
-           try (PreparedStatement selectStmt = conn.prepareStatement(stmt)) {
-               selectStmt.setQueryTimeout(10); // 10s
-               ResultSet rs = selectStmt.executeQuery();
-               while (rs.next()) {
-                   //bookList.add(rs.getString(5));
-                   bookList.add(rs.getString("review"));
-               }
-           }
-           }catch(SQLException e){
-                   System.out.println("failed");
-           }
-           System.out.println(bookList);
- 
-       } catch (ClassNotFoundException | SQLException e) {
-           // TODO Auto-generated catch block
-           e.printStackTrace();
-       }
  
  }
  

@@ -1,18 +1,7 @@
 {namespace com.google.sps.index}
 {template .index}
 {@param companyName: string} /** The person's name. */
-{@param workBalance: string}
-{@param salary: string}
-{@param role: string} 
-{@param reviews: list<[rating:string, comment:string]>} 
-
-/**{template .reviews}
-{@param name: list<string>}
-{@param wlb: list<string>}
-{@param salaries: list<string>}
-{@param reviews: list<string>}
-{@param roles: list<string>}
-{@param starRatings: list<string>}*/
+{@param reviews: list<[rating:string, comment:string, salary:string, workBalance:string, role:string]>} 
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -121,10 +110,10 @@
                             
                             <h4>{$companyName}</h4>
                             
-                            <h6>{$role}</h6>
-                            <p>{$review.comment} </p>
-                            <h6>{$salary}</h6>
-                            <h6>{$workBalance}/5</h6>        
+                            <h6> <strong> Role: </strong> {$review.role}</h6>
+                            <p><strong> Review: </strong> {$review.comment} </p>
+                            <h6><strong> Salary: </strong> {$review.salary}/month</h6>
+                            <h6><strong> Work Life Balance: </strong> {$review.workBalance}/5</h6>        
                             <hr>
                             {/for}
                             

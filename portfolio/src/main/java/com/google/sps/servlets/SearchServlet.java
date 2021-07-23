@@ -51,7 +51,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
     
 
     Review newReview = reviews.get(0);
-    System.out.println(newReview.review);
+    //System.out.println(newReview.review);
 
 
     SoyFileSet sfs = SoyFileSet
@@ -80,25 +80,21 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
         
         fields.put("rating", review.rating);
         fields.put("comment", review.review);
+        fields.put("salary", review.salary);
+        fields.put("workBalance", review.wlb);
+        fields.put("role", review.role);
         
         reviewsList.add(fields);
         
     }
 
-
-    
-
-
-
-
-
     Map<String, Object> data = new HashMap<>();
     data.put("reviews", reviewsList);
     data.put("companyName", newReview.company);
-    data.put("workBalance", newReview.wlb);
-    data.put("salary", newReview.salary);
+    //data.put("workBalance", newReview.wlb);
+    //data.put("salary", newReview.salary);
     //data.put("review", newReview.review);
-    data.put("role", newReview.role);
+    //data.put("role", newReview.role);
     //data.put("ratings", ratingsList);
     
     System.out.println("-----------------");
